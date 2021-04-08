@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+
+
+    S1:
+        build: ./S1
+        image: s1:latest
+        ports:
+        - target: 5500
+          published: 5500        
+          protocol: tcp
+
+    S4:
+        build: ./S4
+        image: s4:latest
+        ports:
+        - target: 5050
+          published: 5050        
+          protocol: tcp             
+                  
+  
+    
+    S2:
+        build: ./S2
+        image: s2:latest
+        ports:
+        - target: 5000
+          published: 5000
+          protocol: tcp
+
+    S3:
+        build: ./S3
+        image: s3:latest
+        ports:
+        - target: 5005
+          published: 5005
+          protocol: tcp
+   
+   
