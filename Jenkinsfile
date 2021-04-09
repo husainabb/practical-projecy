@@ -10,8 +10,11 @@ pipeline{
                     sh "sudo docker-compose build"
                     sh "sudo docker-compose up -d"
                     }
-                stage('Push'){
+            stage('Push'){
+                steps{
                     sh 'sudo docker-compose push'
+                }
+                    
             }
             }  
         } 
