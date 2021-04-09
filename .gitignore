@@ -97,3 +97,4 @@ install-jenkins.sh
 .bash_logout
 .bashrc
 .wget-hsts
+.gitconfig
