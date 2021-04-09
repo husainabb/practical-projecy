@@ -1,5 +1,5 @@
 pipeline{
-    
+
         agent any
         environment{
             DATABASE_URI = credentials("DATABASE_URI")
@@ -13,7 +13,7 @@ pipeline{
                 }
             stage('Build'){
                 steps{
-                    sh "docker-compose build"
+                    sh "sudo docker-compose build"
                     }
                 }
             stage('Tag & Push Image'){
