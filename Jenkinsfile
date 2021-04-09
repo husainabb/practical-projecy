@@ -3,9 +3,9 @@ pipeline {
     // environment{
     //     DATABASE_URI = credentials('DATABASE_URI')
     // }
-    stages{
-        stage('Test'){
-            sh 'bash ./testing.sh'
+    // stages{
+    //     stage('Test'){
+    //         sh 'bash ./testing.sh'
             
         }
         stage('Build'){
