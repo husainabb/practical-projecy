@@ -7,10 +7,9 @@ pipeline{
         stages{
             stage('Build Image'){
                 steps{
-                    script{
-                        if (env.rollback == 'false'){
-                            image = docker.build("[husain98]/chaperoo-frontend")
-                        }
+                    sh "sudo docker-compose build"
+                    sh "sudo docker-compose up -d"
+                        
                     }
                 }
             }
