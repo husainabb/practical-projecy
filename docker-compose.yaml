@@ -4,7 +4,7 @@ services:
 
     S1:
         build: ./S1
-        image: s1:latest
+        image: husain98/s1:latest
         ports:
         - target: 5500
           published: 5500        

@@ -1,21 +1,34 @@
 pipeline{
-
         agent any
-        
+        environment {
+            app_version = 'v1'
+            rollback = 'false'
+        }
         stages{
-         
-                
-            stage('Build'){
+            stage('Build Image'){
                 steps{
-                    sh "sudo docker-compose build"
-                    sh "sudo docker-compose up -d"
+                    script{
+                        if (env.rollback == 'false'){
+                            image = docker.build("[husain98]/chaperoo-frontend")
+                        }
                     }
-            stage('Push'){
-                steps{
-                    sh 'sudo docker-compose push'
                 }
-                    
             }
-            }  
-        } 
-}     
+            stage('Tag & Push Image'){
+                steps{
+                    script{
+                        if (env.rollback == 'false'){
+                            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+                                image.push("${env.app_version}")
+                            }
+                        }
+                    }
+                }
+            }
+            stage('Deploy App'){
+                steps{
+                    sh "docker-compose pull && docker-compose up -d"
+                }
+            }
+        }
+}
