@@ -98,3 +98,4 @@ install-jenkins.sh
 .bashrc
 .wget-hsts
 .gitconfig
+.profile
