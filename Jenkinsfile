@@ -3,11 +3,11 @@ pipeline {
     // environment{
     //     DATABASE_URI = credentials('DATABASE_URI')
     // }
-    // stages{
+    stages{
     //     stage('Test'){
     //         sh 'bash ./testing.sh'
             
-        }
+        
         stage('Build'){
             sh 'docker-compose build'
             sh 'docker-compose up -d'
