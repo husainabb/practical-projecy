@@ -10,7 +10,7 @@ pipeline{
                     sh "sudo docker-compose build"
                     sh "sudo docker-compose up -d"
                     }
-            stage('Push to dockerhub'){
+            stage('Push'){
                 steps{
                     sh 'sudo docker-compose push'
                 }
