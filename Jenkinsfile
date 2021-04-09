@@ -1,29 +1,33 @@
-pipeline {
-    agent any
-    // environment{
-    //     DATABASE_URI = credentials('DATABASE_URI')
-    // }
-    stages{
-    //     stage('Test'){
-    //         sh 'bash ./testing.sh'
-            
-        
-        stage('Build'){
-            sh 'docker-compose build'
-            sh 'docker-compose up -d'
+  
+pipeline{
+        agent any
+        environment{
+            DATABASE_URI = credentials("DATABASE_URI")
+            app_version = "version1"
         }
-        // stage('Push'){
-        //     sh 'docker ps && docker images'
-        //     sh 'docker-compose push'
-
-        // }
-        // stage('Configure Swarm'){
-        //     sh 'ansible-playbook -i inventory.yaml playbook-1.yaml'
-        
-        // }
-        // stage('Deploy'){
-        //     sh 'docker stack deploy --compose-file docker-compose.yaml prizegenerator'
-        //     sh 'docker stack services'
-        // }
-    }
+        stages{
+            stage('Test'){
+                steps{
+                    sh "bash pytest.sh"
+                    }
+                }
+            stage('Build'){
+                steps{
+                    sh "docker-compose build"
+                    }
+                }
+            stage('Tag & Push Image'){
+                steps{
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+                                image.push("${env.app_version}")
+                        }
+                    }
+                }
+            }
+            stage('Deploy App'){
+                steps{
+                    sh "docker stack deploy --compose-file docker-compose.yaml main-services"
+                }
+            }
+        }
 }
