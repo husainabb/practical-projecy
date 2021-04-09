@@ -14,19 +14,8 @@ pipeline{
             stage('Build'){
                 steps{
                     sh "docker-compose build"
+                    sh "docker-compose up -d"
                     }
-                }
-            stage('Tag & Push Image'){
-                steps{
-                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                                image.push("${env.app_version}")
-                        }
-                    }
-                }
-            }
-            stage('Deploy App'){
-                steps{
-                    sh "docker stack deploy --compose-file docker-compose.yaml main-services"
-                }
-            }
-        }
+            }  
+        } 
+}     
