@@ -28,6 +28,7 @@ pipeline {
             sh 'cd ansible && /home/jenkins/.local/bin/ansible-playbook -i inventory.yaml playbook.yaml'
             
         }
+        }
         stage('Deploy'){
             steps{
             sh 'bash deploy.sh'
