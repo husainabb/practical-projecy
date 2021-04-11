@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def NumGenerator():
 
-    RandomNum = randint(0, 100)
+    RandomNum = randint(0, 9)
 
  
 
