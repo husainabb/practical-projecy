@@ -2,7 +2,7 @@ all:
   hosts:
     nginx:
   children:
-    manager:
+    managers:
       hosts:
         manager:
     worker:
