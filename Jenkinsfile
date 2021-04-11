@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
         DATABASE_URI = credentials('DATABASE_URI')
-        docker-hub-credentials = credentials("docker-hub-credentials")
+        DOCKERHUB= credentials("docker-hub-credentials")
     }
     stages{
         stage('Test'){
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Push'){
             steps{
-            sh "docker login --username=$docker-hub-credentials_USR --password=PSW"
+            sh "docker login --username=$DOCKERHUB_USR --password=DOCKERHUB_PSW"
             sh 'docker ps && docker images'
             sh 'docker-compose push'
            
