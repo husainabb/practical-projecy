@@ -9,6 +9,8 @@ services:
         - target: 5500
           published: 5500        
           protocol: tcp
+        environment:
+          DATABASE_URI: ${DATABASE_URI}
 
     S4:
         build: ./S4

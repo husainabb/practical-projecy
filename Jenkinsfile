@@ -1,19 +1,34 @@
-pipeline{
-        agent any
-        environment{
-            app_version = "version1"
+pipeline {
+    agent any
+    environment{
+        DATABASE_URI = credentials('DATABASE_URI')
+    }
+    stages{
+        stage('Test'){
+            steps{
+                sh 'bash ./testing.sh'
+            }
         }
-
-
-        stages{
-            stage('Build Image'){
-                steps{
-                    sh "sudo docker-compose build"
-                    sh "sudo docker-compose up -d"
-                        
-                    }
-                }
-                  
+        stage('Build'){
+            steps{
+                sh 'docker-compose build'
+            }
         }
+        stage('Push'){
+            steps{
+            sh 'docker ps && docker images'
+            sh 'docker-compose push'
+            }
+        }
+        stage('Configure Swarm'){
+            steps{
+            sh 'cd ansible && /home/jenkins/.local/bin/ansible-playbook -i inventory.yaml playbook.yaml'
+        }
+        }
+        stage('Deploy'){
+            steps{
+            sh 'bash deploy.sh'
+            }
+        }
+    }
 }
-

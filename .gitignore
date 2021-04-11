@@ -99,3 +99,6 @@ install-jenkins.sh
 .wget-hsts
 .gitconfig
 .profile
+.ansible_galaxy
+playbook.retry
+.local
