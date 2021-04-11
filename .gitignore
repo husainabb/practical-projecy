@@ -102,3 +102,5 @@ install-jenkins.sh
 .ansible_galaxy
 playbook.retry
 .local
+.Dockerignore
+.profile
