@@ -14,7 +14,7 @@ services:
 
     S4:
         build: ./S4
-        image: s4:latest
+        image: husain98/s4:latest
         ports:
         - target: 5050
           published: 5050        
@@ -24,7 +24,7 @@ services:
     
     S2:
         build: ./S2
-        image: s2:latest
+        image: husain98/s2:latest
         ports:
         - target: 5000
           published: 5000
@@ -32,7 +32,7 @@ services:
 
     S3:
         build: ./S3
-        image: s3:latest
+        image: husain98/s3:latest
         ports:
         - target: 5005
           published: 5005
