@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Push'){
             steps{
-            sh "docker login --username=$DOCKERHUB_USR --password=DOCKERHUB_PSW"
+            sh "sudo docker login --username=$DOCKERHUB_USR --password=DOCKERHUB_PSW"
             sh 'docker ps && docker images'
             sh 'docker-compose push'
            
